@@ -10,9 +10,10 @@ import (
 )
 
 const pfn = "main.go"
-const ncmd = true
 
-var valid = []string{"MP3", "FLAC", "WAV"}
+//const ncmd = true
+
+//var valid = []string{"MP3", "FLAC", "WAV"}
 
 func main() {
 	var args = os.Args
@@ -33,21 +34,22 @@ func main() {
 				ext := ""
 				if len(fext) != 0 && len(fext) <= 5 {
 					ext = strings.ToUpper(fext[1:])
-				} else {
-					// for ncm dump meta error
-					if ncmd {
-						ins, ffext := includef(name)
-						if ins {
-							fmt.Println("Broken NCM:", name)
-							ext = ffext
-						} else {
-							continue
-						}
-					} else {
-						fmt.Println(name)
-						continue
-					}
 				}
+				//else {
+				//	// for ncm dump meta error
+				//	if ncmd {
+				//		ins, ffext := includef(name)
+				//		if ins {
+				//			fmt.Println("Broken NCM:", name)
+				//			ext = ffext
+				//		} else {
+				//			continue
+				//		}
+				//	} else {
+				//		fmt.Println(name)
+				//		continue
+				//	}
+				//}
 				abss := filepath.Join(dir, name)
 				absd := filepath.Join(dir, ext)
 				status, err := movefile(abss, absd)
@@ -86,13 +88,13 @@ func exists(path string) bool {
 	return false
 }
 
-func includef(name string) (bool, string) {
-	bn := strings.ToUpper(name)
-	for _, f := range valid {
-		li := strings.LastIndex(bn, f)
-		if len(name[li+len(f)-1:]) == 0 {
-			return true, f
-		}
-	}
-	return false, ""
-}
+//func includef(name string) (bool, string) {
+//	bn := strings.ToUpper(name)
+//	for _, f := range valid {
+//		li := strings.LastIndex(bn, f)
+//		if len(name[li+len(f)-1:]) == 0 {
+//			return true, f
+//		}
+//	}
+//	return false, ""
+//}
