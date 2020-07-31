@@ -32,7 +32,7 @@ func main() {
 				if len(fext) > 1 {
 					ext = strings.ToUpper(fext[1:])
 				}
-				abss := filepath.Join(spath, name)
+				abss := filepath.Join(dir, name)
 				absd := filepath.Join(spath, ext)
 				status, err := movefile(abss, absd)
 				if status {
